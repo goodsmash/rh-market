@@ -52,7 +52,7 @@ taking a launch or wash-trading a floor. That is our layer:
 |---|---|
 | `src/AntiFraudGate.sol` | One reusable gate. Denies contracts and EIP-7702 (automated) wallets, denies a fraud/sanctions list, enforces per-wallet limits and a cooldown, and optionally requires an EIP-712 signed pass from a human check. |
 | `src/GoodsMarket.sol` | A fixed-price primary/secondary market: pays ERC-2981 royalties, takes a marketplace fee, and refuses the shapes farms use (no contract buyers, no self-trade, no same-wallet wash). |
-| `src/FairLaunch.sol` | A launch on top of the gate: per-wallet cap, per-block global cap, no transfer-for-N-hours after mint, optional signed-pass stage. |
+| `src/FairLaunch.sol` | A launch on top of the gate: fixed price, per-wallet cap, and a **per-block global cap** so one script cannot clear the launch in a single block. (A post-mint transfer cooldown must live in the NFT itself - a sale contract cannot stop the buyer moving the token afterwards.) |
 
 ## What we deliberately do NOT do
 
@@ -71,7 +71,7 @@ you want it, is a *list of addresses*, not a map.
 
 ## Status — read this honestly
 
-- Contracts: built and tested here. **Not audited. Not deployed.**
+- Contracts: built and tested here (**14/14 tests pass**). **Not audited. Not deployed.**
 - The agent never signs or deploys. The owner signs.
 - Rehearse on a fork before any mainnet deploy.
 
