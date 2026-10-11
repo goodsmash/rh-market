@@ -1,0 +1,7 @@
+contracts/lib/
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+__pycache__/
+*.log
+.env
